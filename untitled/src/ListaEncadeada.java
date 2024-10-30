@@ -4,10 +4,11 @@ public class ListaEncadeada<T> {
     private int tamanho = 0;
 
     // Esse daqui sempre vai adicionando no último nó
-    private void adiciona(T elemento) {
+    public void adiciona(T elemento) {
         No<T> celula = new No<T>(elemento);
         if (this.tamanho == 0) {
             this.inicio = celula;
+            this.ultimo = celula;
         } else {
             this.ultimo.setProximo(celula);
         }
@@ -16,7 +17,7 @@ public class ListaEncadeada<T> {
     }
 
     // Esse aqui sempre vai adicionando no nó inicial
-    private void adicionaInicio(T elemento) {
+    public void adicionaInicio(T elemento) {
         if (this.tamanho == 0) {
             No<T> novoNo = new No<>(elemento);
             this.inicio = novoNo;
@@ -53,25 +54,43 @@ public class ListaEncadeada<T> {
         }
     }
     // Métod o para buscar o nó em si na posição especificada
-    private No<T> buscaNo(int posicao) {
-        if(!(posicao >= 0 && posicao <= this.tamanho)) {
+    public No<T> buscaNo(int posicao) {
+    	if(this.tamanho == 0) {
+    		return null;
+    	}
+        if((posicao < 0 && posicao >= this.tamanho)) {
             throw new IllegalArgumentException("Posição não existe");
         }
         No<T> atual = this.inicio;
         for(int i = 0; i < posicao; i++) {
             atual = atual.getProximo();
         }
+        
         return atual;
     }
-
-    // Pode ser mudado do jeito que quiserem, só coloquei para ficar daora
-    public void exibirMenu() {
-        System.out.println("Menu: ");
-        System.out.println("1) Adicionar");
-        System.out.println("2) Remover");
-        System.out.println("3) Inverter lista");
-        System.out.println("4) Retornar o nó que está no meio da lista");
-        System.out.println("5) Remover nós duplicados");
-        System.out.println("6) Sair do programa");
+    
+    /** @author Gigliarly
+     * */
+    public No<T> removerNo(int posicao) {
+    	if (posicao < 0 || posicao > this.tamanho) {
+            throw new IllegalArgumentException("Posição inválida");
+        }
+    	No<T> aux;
+        if (posicao == 0) {
+        	aux = this.inicio;
+            this.inicio = this.inicio.getProximo();
+        }
+        aux = this.buscaNo(posicao - 1);
+        if (posicao == this.tamanho) {
+        	this.ultimo = aux;
+        	aux.setProximo(null);
+        }
+        else {
+            aux.setProximo(aux.getProximo().getProximo());
+        }
+        
+        this.tamanho--;
+        return aux;
     }
+
 }
