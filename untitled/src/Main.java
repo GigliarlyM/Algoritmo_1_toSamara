@@ -5,8 +5,9 @@ public class Main {
     	presenca.adicionaInicio(new Aluno("Douglas"));
     	presenca.adicionaInicio(new Aluno("Jonas"));
     	presenca.adicionaInicio(new Aluno("Jose"));
-    	presenca.adiciona(1, new Aluno("Pedin Pirigo"));
+    	presenca.adicionaInicio(new Aluno("Pedin Pirigo"));
     	
+    	/**
     	System.out.println("Resultados.");
     	System.out.println(presenca.buscaNo(0).getElemento().getNome());
     	System.out.println(presenca.buscaNo(1).getElemento().getNome());
@@ -20,6 +21,19 @@ public class Main {
     	System.out.println(presenca.buscaNo(1).getElemento().getNome());
     	presenca.removerNo(2);
     	System.out.println(presenca.buscaNo(2).getElemento().getNome());
+    	**/
+    	
+    	System.out.println("Antes da inverssão");
+    	for (int i = 0 ;i<presenca.getTamanho(); i++){
+    	System.out.println(presenca.buscaNo(i).getElemento().getNome());
+    	}
+    	presenca.inverter();
+    	
+    	System.out.println("Depois da inverssão");
+    	for (int i = 0;i<presenca.getTamanho(); i++){
+    	System.out.println(presenca.buscaNo(i).getElemento().getNome());
+    	
+    	}
     	
     	
     }

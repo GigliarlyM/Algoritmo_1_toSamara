@@ -92,5 +92,29 @@ public class ListaEncadeada<T> {
         this.tamanho--;
         return aux;
     }
+    
+    /** @author Pedro **/
+    
+    /** inverter lista **/
+    
+    public void inverter() {
+    	No<T> anterior = null;
+    	No<T> atual = this.inicio;
+    	No<T> proximo = null;
+    	
+    	while(atual != null) {
+    		proximo = atual.getProximo();
+    		atual.setProximo(anterior);
+    		anterior = atual;
+    		atual = proximo;
+    	}
+    	this.inicio = anterior;
+    }
+    
+    public int getTamanho() {
+    	return this.tamanho;
+    
+    
+    }
 
 }
