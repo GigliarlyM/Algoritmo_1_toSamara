@@ -1,3 +1,4 @@
+import java.util.HashSet;
 public class ListaEncadeada<T> {
     private No<T> inicio;
     private No<T> ultimo;
@@ -117,4 +118,31 @@ public class ListaEncadeada<T> {
     
     }
 
+}
+/** @author Netin
+     * */
+
+public void removerDuplicados () {
+    if (this.tamanho < 2) {
+        return;  // se tiver 0 ou 1 nao tem nenhum elemento duplicado
+    }
+    HashSet<T> elementosUnicos = new HashSet<>();
+    No<T> atual = this.inicio;
+    No<T> anterior = null;
+
+    while (atual != null) {
+        if (elementosUnicos.contains(atual.getElemento())) {
+            if (anterior != null) {
+                anterior.setProximo(atual.getProximo());
+            }
+            if (atual == this.ultimo) {
+                this.ultimo = anterior; // Atualiza o último nó
+            }
+            this.tamanho--;
+        } else {
+            elementosUnicos.add(atual.getElemento());
+            anterior = atual;
+        }
+        atual = atual.getProximo();
+    }
 }
