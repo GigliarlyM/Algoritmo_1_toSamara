@@ -21,20 +21,20 @@ public class Main {
 
         Bag bag = new Bag(50);
 
-        bag.itemList = itemList;
 
         System.out.println(bag.toString());
 
+        // Ordenação usando BubbleSort
         boolean houveTroca;
-        int tamanho = bag.itemList.size();
+        int tamanho = itemList.size();
 
         for (int i = 0; i < tamanho - 1; i++) {
             houveTroca = false;
             for (int j = 0; j < tamanho - 1 - i; j++) {
-                if (bag.itemList.get(j).value > bag.itemList.get(j + 1).value) {
-                    Item temp = bag.itemList.get(j);
-                    bag.itemList.set(j, bag.itemList.get(j + 1));
-                    bag.itemList.set(j + 1, temp);
+                if (itemList.get(j).value > itemList.get(j + 1).value) {
+                    Item temp = itemList.get(j);
+                    itemList.set(j, itemList.get(j + 1));
+                    itemList.set(j + 1, temp);
                     houveTroca = true;
                 }
             }
@@ -43,7 +43,34 @@ public class Main {
             }
         }
 
-        System.out.println("Mochila após ordenar por valor:");
-        System.out.println(bag);
+        System.out.println("Após ordenar por valor:");
+        System.out.println(itemList);
+        System.out.println();
+
+        for (Item item : itemList) {
+            if (bag.capacity > 0 && item.weight >= bag.capacity) {
+                bag.capacity -= item.weight;
+
+                System.out.println(bag.toString());
+
+                bag.itemList.add(item);
+            } else if (bag.capacity > 0){
+                double percent = ( bag.capacity / item.weight);
+                double newValue = item.value * percent;
+
+                Item newItem = new Item(newValue, bag.capacity);
+
+                bag.itemList.add(newItem);
+
+                bag.capacity = 0;
+            }
+        }
+
+        System.out.println("Valor total: "
+                        + bag.calculateItemValue()
+                        + "Itens que estão na bolsa:"
+                );
+        System.out.println(bag.toString());
+
     }
 }

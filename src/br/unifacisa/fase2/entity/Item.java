@@ -1,10 +1,10 @@
 package br.unifacisa.fase2.entity;
 
 public class Item {
-    public int value;
-    public int weight;
+    public double value;
+    public double weight;
 
-    public Item(int value, int weight) {
+    public Item(double value, double weight) {
         this.value = value;
         this.weight = weight;
     }

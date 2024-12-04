@@ -4,29 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bag {
-    public int capacity;
+    public double capacity;
     public List<Item> itemList;
 
-    public Bag(int capacity) {
+    public Bag(double capacity) {
         this.capacity = capacity;
         this.itemList = new ArrayList<>();
     }
 
-    // Calcula capacidade restante
-    public int calculateRemainingCapacity() {
-        return capacity - calculateItemWeight();
-    }
-
-    public int calculateItemWeight() {
-        int weight = 0;
+    public double calculateItemWeight() {
+        double weight = 0;
         for (Item item : itemList) {
             weight += item.weight;
         }
         return weight;
     }
 
-    public int calculateItemValue() {
-        int value = 0;
+    public double calculateItemValue() {
+        double value = 0;
         for (Item item: itemList) {
             value += item.value;
         }
