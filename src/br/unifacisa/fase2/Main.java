@@ -10,21 +10,25 @@ import br.unifacisa.fase2.entity.Item;
 import java.util.ArrayList;
 
 public class Main {
+	/** @author Gigliarly */
     public static void main(String[] args) {
         System.out.println("Inicio do codigo");
 
         ArrayList<Item> itemList = new ArrayList<>();
 
         itemList.add(new Item(60, 10));
-        itemList.add(new Item(20, 100));
-        itemList.add(new Item(30, 120));
+        itemList.add(new Item(100, 20));
+        itemList.add(new Item(120, 30));
 
         Bag bag = new Bag(50);
 
 
         System.out.println(bag.toString());
+        
+        System.out.println();
 
         // Ordenação usando BubbleSort
+        /** @author Luiz Carlos */
         boolean houveTroca;
         int tamanho = itemList.size();
 
@@ -46,15 +50,16 @@ public class Main {
         System.out.println("Após ordenar por valor:");
         System.out.println(itemList);
         System.out.println();
-
+        
+        // Codigo da mochila gulosa
+        /** @author Ademario; Lincon
+         * */
         for (Item item : itemList) {
-            if (bag.capacity > 0 && item.weight >= bag.capacity) {
+            if (bag.capacity > 0 && item.weight <= bag.capacity) {
                 bag.capacity -= item.weight;
 
-                System.out.println(bag.toString());
-
                 bag.itemList.add(item);
-            } else if (bag.capacity > 0){
+            } else {
                 double percent = ( bag.capacity / item.weight);
                 double newValue = item.value * percent;
 
@@ -68,9 +73,9 @@ public class Main {
 
         System.out.println("Valor total: "
                         + bag.calculateItemValue()
-                        + "Itens que estão na bolsa:"
+                        + "\nItens que estão na bolsa:\n"
+                        + bag.toString()
                 );
-        System.out.println(bag.toString());
 
     }
 }
