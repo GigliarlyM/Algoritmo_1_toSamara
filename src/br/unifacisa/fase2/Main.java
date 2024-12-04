@@ -35,7 +35,7 @@ public class Main {
         for (int i = 0; i < tamanho - 1; i++) {
             houveTroca = false;
             for (int j = 0; j < tamanho - 1 - i; j++) {
-                if (itemList.get(j).value > itemList.get(j + 1).value) {
+                if (itemList.get(j).value < itemList.get(j + 1).value) {
                     Item temp = itemList.get(j);
                     itemList.set(j, itemList.get(j + 1));
                     itemList.set(j + 1, temp);

@@ -34,6 +34,7 @@ public class Bag {
     @Override
     public String toString() {
         String msg = "Bag{" +
+        		"valor guardado" + calculateItemValue() +
                 "capacity=" + capacity +
                 " itemList{" + itemList +
                 "}";
