@@ -52,7 +52,7 @@ public class Main {
         System.out.println();
         
         // Codigo da mochila gulosa
-        /** @author Ademario; Lincon
+        /** @author Ademario; Lincoln
          * */
         for (Item item : itemList) {
             if (bag.capacity > 0 && item.weight <= bag.capacity) {
